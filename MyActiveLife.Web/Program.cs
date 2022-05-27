@@ -14,6 +14,14 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
 
+builder.Services.AddAuthentication()
+    .AddStrava(options =>
+    {
+        IConfigurationSection stravaOAuthConfigSection = builder.Configuration.GetSection("Authentication:Strava");
+        options.ClientId = stravaOAuthConfigSection["ClientId"];
+        options.ClientSecret = stravaOAuthConfigSection["ClientSecret"];
+    });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

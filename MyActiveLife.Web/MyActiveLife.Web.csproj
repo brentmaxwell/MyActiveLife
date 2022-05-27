@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyActiveLife.Apis.Strava\MyActiveLife.Apis.Strava.csproj" />
+    <ProjectReference Include="..\MyActiveLife.Database\MyActiveLife.Database.csproj" />
+  </ItemGroup>
+
 </Project>
