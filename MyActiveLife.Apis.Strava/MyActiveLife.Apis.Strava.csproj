@@ -9,6 +9,15 @@
   <ItemGroup>
     <PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
+
+<ItemGroup>
+	<ProjectReference Include="..\MyActiveLife.Library\MyActiveLife.Library.csproj" />
+</ItemGroup>
+
+<ItemGroup>
+  <Folder Include="Clients\" />
+</ItemGroup>
 
 </Project>
