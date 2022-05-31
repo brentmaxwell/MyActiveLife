@@ -62,7 +62,7 @@ namespace MyActiveLife.Apis.Strava.Clients
             return activities;
         }
 
-        public async Task<List<ActivityStream>> GetActivityStreamAsync(long activityId)
+        public async Task<List<ActivityStream>> GetActivityStreamAsync(string activityId)
         {
             var activityStreams = new List<ActivityStream>();
             try

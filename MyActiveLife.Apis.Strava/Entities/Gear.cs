@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Apis.Strava.Entities
 {
-    public class Gear
+    public class Gear : Resource
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
-
-        [JsonProperty("resource_state")]
-        public int ResourceState { get; set; }
-
         [JsonProperty("primary")]
         public bool Primary { get; set; }
         
@@ -23,5 +17,14 @@ namespace MyActiveLife.Apis.Strava.Entities
         
         [JsonProperty("distance")]
         public int Distance { get; set; }
+
+        [JsonProperty("brand_name")]
+        public string BrandName { get; set; }
+
+        [JsonProperty("model_name")]
+        public string ModelName { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
     }
 }

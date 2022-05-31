@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Apis.Strava.Entities
 {
-    public class User
+    public class Shoe : Gear
     {
     }
 }

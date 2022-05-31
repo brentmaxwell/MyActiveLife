@@ -7,14 +7,8 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Apis.Strava.Entities
 {
-    public class Map
+    public class Map : Resource
     {
-        [JsonProperty("id")]
-        public string Id { get; set; }
-        
-        [JsonProperty("resource_state")]
-        public int ResourceState { get; set; }
-        
         [JsonProperty("polyline")]
         public string Polyline { get; set; }
         

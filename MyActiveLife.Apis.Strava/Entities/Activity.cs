@@ -8,17 +8,8 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Apis.Strava.Entities
 {
-    public class Activity
+    public class Activity : Resource
     {
-        /// <summary>
-        /// The unique identifier of the activity
-        /// </summary>
-        [JsonProperty("id")]
-        public long Id { get; set; }
-
-        [JsonProperty("resource_state")]
-        public int ResourceState { get; set; }
-
         /// <summary>
         /// The identifier provided at upload time
         /// </summary>
@@ -290,7 +281,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// The splits of this activity in metric units (for runs)
         /// </summary>
         [JsonProperty("splits_metric")]
-        public List<SplitMetric> SplitsMetric { get; set; }
+        public List<Split> SplitsMetric { get; set; }
 
         /// <summary>
         /// Gets or Sets Laps
@@ -314,7 +305,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         public List<Photo> Photos { get; set; }
 
         [JsonProperty("highlighted_kudosers")]
-        public List<User> HighlightedKudosers { get; set; }
+        public List<Athlete> HighlightedKudosers { get; set; }
 
         /// <summary>
         /// Whether the activity is muted

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Apis.Strava.Entities
 {
-    public class SplitMetric
+    public class Split
     {
         [JsonProperty("distance")]
         public double Distance { get; set; }
@@ -22,7 +22,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         public int MovingTime  { get; set; }
         
         [JsonProperty("split")]
-        public int Split { get; set; }
+        public int SplitIndex { get; set; }
         
         [JsonProperty("average_speed")]
         public double AverageSpeed { get; set; }
