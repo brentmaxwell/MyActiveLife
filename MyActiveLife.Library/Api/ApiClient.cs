@@ -1,0 +1,78 @@
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MyActiveLife.Library.Api
+{
+    public abstract class ApiClient
+    {
+        protected string AuthToken;
+        protected HttpClient HttpClient;
+
+        public ApiClient(string authToken)
+        {
+            AuthToken = authToken;
+            HttpClient = new HttpClient();
+            HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
+        }
+
+        protected async Task<T> GetAsync<T>(string url)
+        {
+            string response = await GetJsonRequest(url);
+            return JsonConvert.DeserializeObject<T>(JObject.Parse(response).ToString());
+        }
+
+        protected async Task<T> PostAsync<T>(string url, List<KeyValuePair<string, string>> parameters)
+        {
+            string response = await PostJsonRequest(url, parameters);
+            return JsonConvert.DeserializeObject<T>(JObject.Parse(response).ToString());
+        }
+
+        protected async Task<T> DeleteAsync<T>(string url)
+        {
+            string response = await DeleteJsonRequest(url);
+            return JsonConvert.DeserializeObject<T>(JObject.Parse(response).ToString());
+        }
+
+        private async Task<string> GetJsonRequest(string url)
+        {
+            try
+            {
+                HttpResponseMessage response = await HttpClient.GetAsync(url).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new UnauthorizedAccessException(ex.Message, ex);
+            }
+        }
+
+        private async Task<string> PostJsonRequest(string url, IEnumerable<KeyValuePair<string, string>> parameters)
+        {
+            var requestContent = new FormUrlEncodedContent(parameters);
+            HttpResponseMessage response = await HttpClient.PostAsync(url, requestContent);
+            response.EnsureSuccessStatusCode();
+            return await response.Content.ReadAsStringAsync();
+        }
+
+        protected async Task<string> DeleteJsonRequest(string url)
+        {
+            try
+            {
+                HttpResponseMessage response = await HttpClient.DeleteAsync(url);
+                response.EnsureSuccessStatusCode();
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (HttpRequestException ex)
+            {
+                throw new UnauthorizedAccessException(ex.Message, ex);
+            }
+        }
+    }
+}

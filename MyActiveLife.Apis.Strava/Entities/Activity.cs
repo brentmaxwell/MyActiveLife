@@ -340,5 +340,8 @@ namespace MyActiveLife.Apis.Strava.Entities
         [JsonProperty("leaderboard_opt_out")]
         public bool LeaderboardOptOut { get; set; }
 
+        public List<ActivityStream> Stream { get; set; }
+
+
     }
 }
