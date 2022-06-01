@@ -56,7 +56,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// The activity's total elevation gain.
         /// </summary>
         [JsonProperty("total_elevation_gain")]
-        public decimal TotalElevationGain { get; set; }
+        public decimal? TotalElevationGain { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
@@ -83,7 +83,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         public string Timezone { get; set; }
 
         [JsonProperty("utc_offset")]
-        public int UtcOffset { get; set; }
+        public float? UtcOffset { get; set; }
 
         /// <summary>
         /// Gets or Sets StartLatlng
@@ -185,34 +185,34 @@ namespace MyActiveLife.Apis.Strava.Entities
         public float? MaxSpeed { get; set; }
 
         [JsonProperty("average_cadence")]
-        public decimal AverageCadence { get; set; }
+        public decimal? AverageCadence { get; set; }
 
         [JsonProperty("average_temp")]
-        public decimal AverageTemp { get; set; }
+        public decimal? AverageTemp { get; set; }
 
         /// <summary>
         /// Average power output in watts during this activity. Rides only
         /// </summary>
         [JsonProperty("average_watts")]
-        public decimal AverageWatts { get; set; }
+        public decimal? AverageWatts { get; set; }
 
         /// <summary>
         /// Similar to Normalized Power. Rides with power meter data only
         /// </summary>
         [JsonProperty("weighted_average_watts")]
-        public decimal WeightedAverageWatts { get; set; }
+        public decimal? WeightedAverageWatts { get; set; }
 
         /// <summary>
         /// The total work done in kilojoules during this activity. Rides only
         /// </summary>
         [JsonProperty("kilojoules")]
-        public decimal Kilojoules { get; set; }
+        public decimal? Kilojoules { get; set; }
 
         /// <summary>
         /// Whether the watts are from a power meter, false if estimated
         /// </summary>
         [JsonProperty("device_watts")]
-        public decimal DeviceWatts { get; set; }
+        public bool DeviceWatts { get; set; }
 
         [JsonProperty("has_heartrate")]
         public bool HasHeartrate { get; set; }
@@ -221,7 +221,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// Rides with power meter data only
         /// </summary>
         [JsonProperty("max_watts")]
-        public decimal MaxWatts { get; set; }
+        public decimal? MaxWatts { get; set; }
 
         /// <summary>
         /// The activity&#x27;s highest elevation, in meters
@@ -236,7 +236,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         public float? ElevationLow { get; set; }
 
         [JsonProperty("pr_count")]
-        public decimal PrCount { get; set; }
+        public int? PrCount { get; set; }
 
         /// <summary>
         /// The number of Instagram and Strava photos for this activity
@@ -254,10 +254,10 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// The activity&#x27;s workout type
         /// </summary>
         [JsonProperty("workout_type")]
-        public int WorkoutType { get; set; }
+        public int? WorkoutType { get; set; }
 
         [JsonProperty("suffer_score")]
-        public int SufferScore { get; set; }
+        public float? SufferScore { get; set; }
 
         /// <summary>
         /// The description of the activity
@@ -269,7 +269,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// The number of kilocalories consumed during this activity
         /// </summary>
         [JsonProperty("calories")]
-        public decimal Calories { get; set; }
+        public decimal? Calories { get; set; }
 
         /// <summary>
         /// Gets or Sets SegmentEfforts

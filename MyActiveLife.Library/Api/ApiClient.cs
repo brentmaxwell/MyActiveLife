@@ -24,7 +24,8 @@ namespace MyActiveLife.Library.Api
         protected async Task<T> GetAsync<T>(string url)
         {
             string response = await GetJsonRequest(url);
-            return JsonConvert.DeserializeObject<T>(JObject.Parse(response).ToString());
+            //var jobject = JObject.Parse(response as string);
+            return JsonConvert.DeserializeObject<T>(response);
         }
 
         protected async Task<T> PostAsync<T>(string url, List<KeyValuePair<string, string>> parameters)
@@ -39,7 +40,7 @@ namespace MyActiveLife.Library.Api
             return JsonConvert.DeserializeObject<T>(JObject.Parse(response).ToString());
         }
 
-        private async Task<string> GetJsonRequest(string url)
+        public async Task<string> GetJsonRequest(string url)
         {
             try
             {

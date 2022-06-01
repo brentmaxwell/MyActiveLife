@@ -26,6 +26,12 @@ namespace MyActiveLife.Apis.Strava.OAuth
             UserInformationEndpoint = StravaAuthenticationDefaults.UserInformationEndpoint;
 
             Scope.Add("read");
+            Scope.Add("read_all");
+            Scope.Add("profile:read_all");
+            Scope.Add("profile:write");
+            Scope.Add("activity:read");
+            Scope.Add("activity:read_all");
+            Scope.Add("activity:write");
 
             ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
             ClaimActions.MapJsonKey(ClaimTypes.Name, "username");
