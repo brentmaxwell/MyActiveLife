@@ -6,8 +6,20 @@
 }
 
 
-@foreach(var activity in Model){
-    <p>
-    @activity.Name;
-    </p>
+@foreach(var activity in Model)
+{
+    <div class="card mb-12">
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="@activity.StaticMap.ToString()" class="img-fluid rounded-start">
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">@activity.Name</h5>
+            <p class="card-text">@activity.Description</p>
+            <p class="card-text"><small class="text-muted">@activity.StartDateLocal</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
 }

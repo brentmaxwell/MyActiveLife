@@ -1,4 +1,5 @@
-﻿using MyActiveLife.Library;
+﻿using MyActiveLife.Apis.Google;
+using MyActiveLife.Library;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -332,6 +333,8 @@ namespace MyActiveLife.Apis.Strava.Entities
         public bool LeaderboardOptOut { get; set; }
 
         public List<ActivityStream> Stream { get; set; }
+
+        public StaticMap StaticMap { get; set; }
 
 
     }
