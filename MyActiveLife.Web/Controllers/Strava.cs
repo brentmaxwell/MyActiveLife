@@ -29,12 +29,12 @@ namespace MyActiveLife.Web.Controllers
             _mapper = mapper;
         }
         
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var user = await _userManager.GetUserAsync(User);
             var token = await _userManager.GetAuthenticationTokenAsync(user, "Strava", "access_token");
             var client = new ActivityClient(token);
-            var activities = await client.GetAsync();
+            var activities = await client.GetAsync(null,null,page,null,false);
             var staticMapApiKey = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];
 
             var activityModel = _mapper.Map<ICollection<Activity>, List<StravaActivityModel>>(activities);

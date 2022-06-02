@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Apis.Strava.Entities
 {
-    public class ActivityStream
+    public class ActivityStreamPoint
     {
         public int Time { get; set; }
         public float? Latitude { get; set; }

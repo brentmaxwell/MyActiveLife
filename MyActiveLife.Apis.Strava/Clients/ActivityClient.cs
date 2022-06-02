@@ -16,6 +16,12 @@ namespace MyActiveLife.Apis.Strava.Clients
         {
         }
 
+        /// <summary>
+        /// Get one activity
+        /// </summary>
+        /// <param name="activityId">The identifier of the activity</param>
+        /// <param name="includeAllEfforts">True to include all segments efforts</param>
+        /// <returns>An Activity object</returns>
         public async Task<Activity> GetAsync(int activityId, bool? includeAllEfforts = null)
         {
             string queryString = "?";
@@ -25,10 +31,19 @@ namespace MyActiveLife.Apis.Strava.Clients
             }
             queryString = queryString.TrimEnd(new[] { '?', '&' });
             Activity activity = await GetAsync<Activity>(Endpoints.ActivitiesEndpointUrl + activityId + queryString);
-            activity.Stream = await GetActivityStreamAsync(activity.Id);
+            activity.ActivityStreamPoints = await GetActivityStreamAsync(activity.Id);
             return activity;
         }
 
+        /// <summary>
+        /// Get a list of activities
+        /// </summary>
+        /// <param name="before">An epoch timestamp to use for filtering activities that have taken place before a certain time</param>
+        /// <param name="after">An epoch timestamp to use for filtering activities that have taken place after a certain time</param>
+        /// <param name="page">Page number. Defaults to 1</param>
+        /// <param name="perPage">Number of items per page. Defaults to 30</param>
+        /// <param name="includeDetails"></param>
+        /// <returns>An ICollection of Activity objects</returns>
         public async Task<ICollection<Activity>> GetAsync(DateTime? before = null, DateTime? after = null,
             int? page = null, int? perPage = null, bool includeDetails = false)
         {
@@ -56,15 +71,20 @@ namespace MyActiveLife.Apis.Strava.Clients
             {
                 foreach (Activity activity in activities)
                 {
-                    activity.Stream = await GetActivityStreamAsync(activity.Id);
+                    activity.ActivityStreamPoints = await GetActivityStreamAsync(activity.Id);
                 }
             }
             return activities;
         }
 
-        public async Task<List<ActivityStream>> GetActivityStreamAsync(string activityId)
+        /// <summary>
+        /// Gets the data streams for an activity
+        /// </summary>
+        /// <param name="activityId">The identifier of the activity</param>
+        /// <returns>A list of ActivityStream objects</returns>
+        public async Task<List<ActivityStreamPoint>> GetActivityStreamAsync(string activityId)
         {
-            var activityStreams = new List<ActivityStream>();
+            var activityStreamPoint = new List<ActivityStreamPoint>();
             try
             {
                 Stream<object>[] stream = await
@@ -84,7 +104,7 @@ namespace MyActiveLife.Apis.Strava.Clients
                 Stream<object> movingStream = stream.SingleOrDefault(x => x.Type == "moving");
                 Stream<object> gradeStream = stream.SingleOrDefault(x => x.Type == "grade");
                 if (timeStream != null)
-                    activityStreams.AddRange(timeStream.Data.Select((t, i) => new ActivityStream
+                    activityStreamPoint.AddRange(timeStream.Data.Select((t, i) => new ActivityStreamPoint
                     {
                         Time = int.Parse(t.ToString()),
                         Latitude =
@@ -138,7 +158,7 @@ namespace MyActiveLife.Apis.Strava.Clients
             // ReSharper restore EmptyGeneralCatchClause
             {
             }
-            return activityStreams;
+            return activityStreamPoint;
         }
 
         public async Task<ICollection<Activity>> GetFollowingAsync(int? page = null, int? perPage = null)

@@ -11,35 +11,30 @@ namespace MyActiveLife.Apis.Strava.Entities
     {
         //Stream types
         //Streams are available in 11 different types. If the stream is not available for a particular activity it will be left out of the request results.
-
-        //time:	integer seconds
-        //latlng:	floats [latitude, longitude]
-        //distance:	float meters
-        //altitude:	float meters
-        //velocity_smooth:	float meters per second
-        //heartrate:	integer BPM
-        //cadence:	integer RPM
-        //watts:	integer watts
-        //temp:	integer degrees Celsius
-        //moving:	boolean
-        //grade_smooth:	float percent
-
         [JsonProperty("type")]
         public string Type { get; set; }
 
-        //array of stream values
+        /// <summary>
+        /// The sequence of values for this stream, in seconds
+        /// </summary>
         [JsonProperty("data")]
         public T[] Data { get; set; }
 
-        //series type used for down sampling, will be present even if not used
+        /// <summary>
+        /// The base series used in the case the stream was downsampled May take one of the following values: distance, time
+        /// </summary>
         [JsonProperty("series_type")]
         public string SeriesType { get; set; }
 
-        //complete stream length
+        /// <summary>
+        /// The number of data points in this stream
+        /// </summary>
         [JsonProperty("original_size")]
         public int? OriginalSize { get; set; }
 
-        //‘low’, ‘medium’ or ‘high’
+        /// <summary>
+        /// The level of detail (sampling) in which this stream was returned May take one of the following values: low, medium, high
+        /// </summary>
         [JsonProperty("resolution")]
         public string Resolution { get; set; }
     }

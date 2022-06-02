@@ -174,13 +174,13 @@ namespace MyActiveLife.Apis.Strava.Entities
         public bool FromAcceptedTag { get; set; }
 
         /// <summary>
-        /// The activity&#x27;s average speed, in meters per second
+        /// The activity's average speed, in meters per second
         /// </summary>
         [JsonProperty("average_speed")]
         public float? AverageSpeed { get; set; }
 
         /// <summary>
-        /// The activity&#x27;s max speed, in meters per second
+        /// The activity's max speed, in meters per second
         /// </summary>
         [JsonProperty("max_speed")]
         public float? MaxSpeed { get; set; }
@@ -225,13 +225,13 @@ namespace MyActiveLife.Apis.Strava.Entities
         public decimal? MaxWatts { get; set; }
 
         /// <summary>
-        /// The activity&#x27;s highest elevation, in meters
+        /// The activity's highest elevation, in meters
         /// </summary>
         [JsonProperty("elev_high")]
         public float? ElevationHigh { get; set; }
 
         /// <summary>
-        /// The activity&#x27;s lowest elevation, in meters
+        /// The activity's lowest elevation, in meters
         /// </summary>
         [JsonProperty("elev_low")]
         public float? ElevationLow { get; set; }
@@ -252,7 +252,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         public bool HasKudoed { get; set; }
 
         /// <summary>
-        /// The activity&#x27;s workout type
+        /// The activity's workout type
         /// </summary>
         [JsonProperty("workout_type")]
         public int? WorkoutType { get; set; }
@@ -332,10 +332,6 @@ namespace MyActiveLife.Apis.Strava.Entities
         [JsonProperty("leaderboard_opt_out")]
         public bool LeaderboardOptOut { get; set; }
 
-        public List<ActivityStream> Stream { get; set; }
-
-        public StaticMap StaticMap { get; set; }
-
-
+        public List<ActivityStreamPoint> ActivityStreamPoints { get; set; }
     }
 }
