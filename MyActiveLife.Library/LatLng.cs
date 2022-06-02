@@ -16,7 +16,6 @@ namespace MyActiveLife.Library
         private decimal lat;
         private decimal lng;
 
-
         public decimal Latitude
         {
             get { return lat; }

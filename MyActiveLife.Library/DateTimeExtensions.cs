@@ -20,6 +20,11 @@ namespace MyActiveLife.Library
             return epoch;
         }
 
+        /// <summary>
+        /// Converts a unix timestamp to a DateTime
+        /// </summary>
+        /// <param name="time">Unix timestamp</param>
+        /// <returns>DateTime</returns>
         public static DateTime FromUnixTime(long time)
         {
             return (new DateTime(1970, 1, 1, 0, 0, 0)).AddSeconds(time);

@@ -43,6 +43,5 @@ namespace MyActiveLife.Apis.Strava
         public const string UploadEndpointUrl = BaseEndpointUrl + "uploads";
 
         #endregion
-
     }
 }
