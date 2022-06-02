@@ -11,7 +11,7 @@ namespace MyActiveLife.Apis.Google
     {
         private const string baseUrl = "https://maps.googleapis.com/maps/api/staticmap";
 
-        private string _apiKey;
+        public string ApiKey;
         public int? Height;
         public int? Width;
         private string size
@@ -29,9 +29,13 @@ namespace MyActiveLife.Apis.Google
 
         public Path Path;
 
+        public StaticMap()
+        {
+
+        }
         public StaticMap(string apiKey)
         {
-            _apiKey = apiKey;
+            ApiKey = apiKey;
         }
 
         public override string ToString()
@@ -49,7 +53,7 @@ namespace MyActiveLife.Apis.Google
             {
                 output += $"zoom={Zoom.Value}&";
             }
-            output += $"path={Path.ToString()}&key={_apiKey}";
+            output += $"path={Path.ToString()}&key={ApiKey}";
             return output;
         }
    }

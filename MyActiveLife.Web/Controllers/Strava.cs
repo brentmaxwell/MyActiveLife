@@ -1,17 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-
-using System;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using MyActiveLife.Library.Api;
+using AutoMapper;
+using MyActiveLife.Web.Models;
 using MyActiveLife.Apis.Strava.Clients;
+using MyActiveLife.Apis.Strava.Entities;
 
 namespace MyActiveLife.Web.Controllers
 {
@@ -21,17 +13,20 @@ namespace MyActiveLife.Web.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IUserStore<IdentityUser> _userStore;
+        private readonly IMapper _mapper;
 
         public Strava(
             IConfiguration configuration,
             UserManager<IdentityUser> userManager,
             SignInManager<IdentityUser> signInManager,
-            IUserStore<IdentityUser> userStore)
+            IUserStore<IdentityUser> userStore,
+            IMapper mapper)
         {
             _configuration = configuration;
             _userManager = userManager;
             _signInManager = signInManager;
             _userStore = userStore;
+            _mapper = mapper;
         }
         
         public async Task<IActionResult> Index()
@@ -40,22 +35,16 @@ namespace MyActiveLife.Web.Controllers
             var token = await _userManager.GetAuthenticationTokenAsync(user, "Strava", "access_token");
             var client = new ActivityClient(token);
             var activities = await client.GetAsync();
-            var staticMapToken = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];
+            var staticMapApiKey = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];
 
-            foreach(var activity in activities)
+            var activityModel = _mapper.Map<ICollection<Activity>, List<StravaActivityModel>>(activities);
+
+            activityModel.ForEach(x =>
             {
-                activity.StaticMap = new Apis.Google.StaticMap(staticMapToken)
-                {
-                    Height = 400,
-                    Width = 400,
-                    Path = new Apis.Google.Path()
-                    {
-                        PathLine = "enc:" + activity.Map.SummaryPolyline
-                    }
-                };
-            }
+                x.Map.ApiKey = staticMapApiKey;
+            });
 
-            return View(activities);
+            return View(activityModel);
         }
     }
 }
