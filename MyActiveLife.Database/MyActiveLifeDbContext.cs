@@ -5,7 +5,7 @@ namespace MyActiveLife.Database
 {
     public class MyActiveLifeDbContext : DbContext
     {
-        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<UserProfile> Profiles { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<StravaActivity> StravaActivities { get; set; }
         public DbSet<Photo> Photos { get; set; }

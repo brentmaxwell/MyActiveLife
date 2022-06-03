@@ -13,12 +13,12 @@ namespace MyActiveLife.Database.Entities
     {
         [Key]
         public Guid PhotoId { get; set; }
-        public Guid ProfileId { get; set; }
+        public Guid UserId { get; set; }
         public Guid SourceId { get; set; }
         public string ExternalId { get; set; }
 
-        [ForeignKey("ProfileId")]
-        public virtual Profile Profile { get; set; }
+        [ForeignKey("UserId")]
+        public virtual UserProfile UserProfile { get; set; }
 
         [ForeignKey("SourceId")]
         public virtual Source Source { get; set; }

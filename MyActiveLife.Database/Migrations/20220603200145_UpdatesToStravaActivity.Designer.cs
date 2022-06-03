@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyActiveLife.Database;
 
@@ -11,9 +12,10 @@ using MyActiveLife.Database;
 namespace MyActiveLife.Database.Migrations
 {
     [DbContext(typeof(MyActiveLifeDbContext))]
-    partial class MyActiveLifeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220603200145_UpdatesToStravaActivity")]
+    partial class UpdatesToStravaActivity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

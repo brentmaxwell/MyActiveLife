@@ -13,16 +13,17 @@ namespace MyActiveLife.Database.Entities
     {
         [Key]
         public Guid ActivityId { get; set; }
-        public Guid ProfileId { get; set; }
+        public Guid UserId { get; set; }
         public Guid SourceId { get; set; }
-        public string ExternalId  { get; set; }
+        public string? ExternalId  { get; set; }
         public int ActivityTypeId { get; set; }
         public string ActivityName { get; set; }
-        public string Description { get; set; }
-        public DateTime StartTime { get; set; }
 
-        [ForeignKey("ProfileId")]
-        public virtual Profile Profile { get; set; }
+        public string? Description { get; set; }
+        public DateTime StartDateTime { get; set; }
+
+        [ForeignKey("UserId")]
+        public virtual UserProfile UserProfile { get; set; }
 
         [ForeignKey("SourceId")]
         public virtual Source Source { get; set; }

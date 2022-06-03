@@ -13,6 +13,7 @@ namespace MyActiveLife.Database.Entities
         public TimeSpan MovingTime { get; set; }
         public TimeSpan ElapsedTime { get; set; }
         public float? Distance { get; set; }
+        public float? TotalElevationGain { get; set; }
         public float? AverageSpeed { get; set; }
         public float? MaxSpeed { get; set; }
         public float? AverageCadence { get; set; }
@@ -25,7 +26,7 @@ namespace MyActiveLife.Database.Entities
         public float? ElevationLow { get; set; }
         public float? SufferScore { get; set; }
         public float? Calories { get; set; }
-        public string MapPolyline { get; set; }
+        public string? MapPolyline { get; set; }
         
     }
 }

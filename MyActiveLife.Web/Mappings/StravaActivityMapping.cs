@@ -6,17 +6,18 @@ using MyActiveLife.Web.Models;
 
 namespace MyActiveLife.Web.Mappings
 {
-    public class StravaActivityModelMapping : Profile
+    public class StravaActivityMapping : Profile
     {
         private string staticMapApiKey;
-        public StravaActivityModelMapping()
+        public StravaActivityMapping()
         {
-            CreateMap<StravaActivity, StravaActivityModel>()
-                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.ActivityName))
-                .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartDateTime))
+            CreateMap<MyActiveLife.Apis.Strava.Entities.Activity, StravaActivity>()
+                .ForMember(dest => dest.ActivityName, opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.StartDateTime, opt => opt.MapFrom(src => src.StartDateLocal))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
-                .ForMember(dest => dest.MovingTime, opt => opt.MapFrom(src => src.MovingTime))
-                .ForMember(dest => dest.ElapsedTime, opt => opt.MapFrom(src => src.ElapsedTime))
+                .ForMember(dest => dest.ActivityTypeId, opt => opt.MapFrom(src => 1))
+                .ForMember(dest => dest.MovingTime, opt => opt.MapFrom(src => src.MovingTime.HasValue ? TimeSpan.FromSeconds(src.MovingTime.Value) : new TimeSpan()))
+                .ForMember(dest => dest.ElapsedTime, opt => opt.MapFrom(src => src.ElapsedTime.HasValue ? TimeSpan.FromSeconds(src.ElapsedTime.Value) : new TimeSpan()))
                 .ForMember(dest => dest.Distance, opt => opt.MapFrom(src => src.Distance / 1609))
                 .ForMember(dest => dest.TotalElevationGain, opt => opt.MapFrom(src => src.TotalElevationGain))
                 .ForMember(dest => dest.AverageSpeed, opt => opt.MapFrom(src => src.AverageSpeed * 2.237))
@@ -31,20 +32,7 @@ namespace MyActiveLife.Web.Mappings
                 .ForMember(dest => dest.ElevationLow, opt => opt.MapFrom(src => src.ElevationLow))
                 .ForMember(dest => dest.SufferScore, opt => opt.MapFrom(src => src.SufferScore))
                 .ForMember(dest => dest.Calories, opt => opt.MapFrom(src => src.Calories))
-                .ForMember(dest => dest.Map, opt => opt.MapFrom(src => src.MapPolyline != null ? GetMap(src.MapPolyline) : null));
-        }
-
-        public StaticMap GetMap(string polyline)
-        {
-            return new StaticMap()
-            {
-                Height = 200,
-                Width = 200,
-                Path = new Apis.Google.Path()
-                {
-                    PathLine = "enc:" + polyline
-                }
-            };
+                .ForMember(dest => dest.MapPolyline, opt => opt.MapFrom(src => src.Map.SummaryPolyline));
         }
     }
 }
