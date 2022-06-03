@@ -12,6 +12,7 @@ namespace MyActiveLife.Web.Mappings
         public StravaActivityMapping()
         {
             CreateMap<MyActiveLife.Apis.Strava.Entities.Activity, StravaActivity>()
+                .ForMember(dest => dest.ExternalId, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.ActivityName, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.StartDateTime, opt => opt.MapFrom(src => src.StartDateLocal))
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
