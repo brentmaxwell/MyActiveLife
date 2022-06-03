@@ -18,6 +18,7 @@ namespace MyActiveLife.Database.Entities
         public string ExternalId  { get; set; }
         public int ActivityTypeId { get; set; }
         public string ActivityName { get; set; }
+        public string Description { get; set; }
         public DateTime StartTime { get; set; }
 
         [ForeignKey("ProfileId")]

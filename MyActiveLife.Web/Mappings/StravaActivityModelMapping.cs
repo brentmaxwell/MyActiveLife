@@ -16,7 +16,7 @@ namespace MyActiveLife.Web.Mappings
                 .ForMember(dest => dest.StartTime, opt => opt.MapFrom(src => src.StartDateLocal))
                 .ForMember(dest => dest.MovingTime, opt => opt.MapFrom(src => src.MovingTime.HasValue ? TimeSpan.FromSeconds(src.MovingTime.Value) : new TimeSpan()))
                 .ForMember(dest => dest.Distance, opt => opt.MapFrom(src => src.Distance / 1609))
-                .ForMember(dest => dest.AvgSpeed, opt => opt.MapFrom(src => src.AverageSpeed * 2.237))
+                .ForMember(dest => dest.AverageSpeed, opt => opt.MapFrom(src => src.AverageSpeed * 2.237))
                 .ForMember(dest => dest.Map, opt => opt.MapFrom(src => GetMap(src.Map.SummaryPolyline)));
 
         }

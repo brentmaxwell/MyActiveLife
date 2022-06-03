@@ -7,6 +7,7 @@ namespace MyActiveLife.Database
     {
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<StravaActivity> StravaActivities { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Source> Sources { get; set; }
 

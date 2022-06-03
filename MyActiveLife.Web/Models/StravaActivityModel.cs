@@ -26,10 +26,10 @@ namespace MyActiveLife.Web.Models
         public TimeSpan MovingTime { get; set; }
 
         [DisplayName("Distance")]
-        public decimal? Distance { get; set; }
+        public float? Distance { get; set; }
 
         [DisplayName("Average Speed")]
-        public decimal? AvgSpeed { get; set; }
+        public float? AverageSpeed { get; set; }
 
     }
 }

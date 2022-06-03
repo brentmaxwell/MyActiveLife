@@ -57,7 +57,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// The activity's total elevation gain.
         /// </summary>
         [JsonProperty("total_elevation_gain")]
-        public decimal? TotalElevationGain { get; set; }
+        public float? TotalElevationGain { get; set; }
 
         /// <summary>
         /// Gets or Sets Type
@@ -186,28 +186,28 @@ namespace MyActiveLife.Apis.Strava.Entities
         public float? MaxSpeed { get; set; }
 
         [JsonProperty("average_cadence")]
-        public decimal? AverageCadence { get; set; }
+        public float? AverageCadence { get; set; }
 
         [JsonProperty("average_temp")]
-        public decimal? AverageTemp { get; set; }
+        public float? AverageTemp { get; set; }
 
         /// <summary>
         /// Average power output in watts during this activity. Rides only
         /// </summary>
         [JsonProperty("average_watts")]
-        public decimal? AverageWatts { get; set; }
+        public float? AverageWatts { get; set; }
 
         /// <summary>
         /// Similar to Normalized Power. Rides with power meter data only
         /// </summary>
         [JsonProperty("weighted_average_watts")]
-        public decimal? WeightedAverageWatts { get; set; }
+        public float? WeightedAverageWatts { get; set; }
 
         /// <summary>
         /// The total work done in kilojoules during this activity. Rides only
         /// </summary>
         [JsonProperty("kilojoules")]
-        public decimal? Kilojoules { get; set; }
+        public float? Kilojoules { get; set; }
 
         /// <summary>
         /// Whether the watts are from a power meter, false if estimated
@@ -222,7 +222,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// Rides with power meter data only
         /// </summary>
         [JsonProperty("max_watts")]
-        public decimal? MaxWatts { get; set; }
+        public float? MaxWatts { get; set; }
 
         /// <summary>
         /// The activity's highest elevation, in meters
@@ -270,7 +270,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// The number of kilocalories consumed during this activity
         /// </summary>
         [JsonProperty("calories")]
-        public decimal? Calories { get; set; }
+        public float? Calories { get; set; }
 
         /// <summary>
         /// Gets or Sets SegmentEfforts
