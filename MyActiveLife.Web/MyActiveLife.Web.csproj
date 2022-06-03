@@ -23,7 +23,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyActiveLife.Apis.Google\MyActiveLife.Apis.Google.csproj" />
     <ProjectReference Include="..\MyActiveLife.Apis.Strava\MyActiveLife.Apis.Strava.csproj" />
+    <ProjectReference Include="..\MyActiveLife.Database\MyActiveLife.Database.csproj" />
     <ProjectReference Include="..\MyActiveLife.Library\MyActiveLife.Library.csproj" />
   </ItemGroup>
 

@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Database.Entities
 {
-    [Table("Profile")]
-    public class Profile
+    [Table("ActivityType")]
+    public class ActivityType
     {
         [Key]
-        public Guid ProfileId { get; set; }
-        public Guid UserId { get; set; }
-        public string? Name { get; set; }
-        public DateTime? DateOfBirth { get; set; }
+        public int ActivityTypeId { get; set; }
+        public string ActivityTypeName { get; set; }
         public virtual List<Activity> Activities { get; set; }
-        public virtual List<Photo> Photos { get; set; }
     }
 }

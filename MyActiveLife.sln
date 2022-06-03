@@ -13,7 +13,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyActiveLife.Apis.Strava", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyActiveLife.Library", "MyActiveLife.Library\MyActiveLife.Library.csproj", "{0B44DBC6-92A3-47AC-BF13-D441960C9B83}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyActiveLife.Web", "MyActiveLife.Web\MyActiveLife.Web.csproj", "{CF53C124-69B6-43AE-8F85-F7285EF2E591}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyActiveLife.Web", "MyActiveLife.Web\MyActiveLife.Web.csproj", "{CF53C124-69B6-43AE-8F85-F7285EF2E591}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7F08DDE0-50B5-4241-913A-FA82B8EAF93B}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
