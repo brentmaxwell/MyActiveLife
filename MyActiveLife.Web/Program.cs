@@ -35,19 +35,20 @@ builder.Services.AddAuthentication()
         options.ClientSecret = stravaOAuthConfigSection["ClientSecret"];
         options.SaveTokens = true;
         options.Events.OnCreatingTicket = ctx =>
-         {
-             List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList();
+        {
+            List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList();
 
-             tokens.Add(new AuthenticationToken()
-             {
-                 Name = "TicketCreated",
-                 Value = DateTime.UtcNow.ToString()
-             });
+            tokens.Add(new AuthenticationToken()
+            {
+                Name = "TicketCreated",
+                Value = DateTime.UtcNow.ToString()
+            });
 
-             ctx.Properties.StoreTokens(tokens);
+            ctx.Properties.StoreTokens(tokens);
 
-             return Task.CompletedTask;
-         };
+            return Task.CompletedTask;
+        };
+
     });
 
 
