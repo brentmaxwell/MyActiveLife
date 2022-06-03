@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyActiveLife.Apis.Strava.Clients
+namespace MyActiveLife.Library
 {
     public class TokenClient
     {
@@ -40,7 +40,7 @@ namespace MyActiveLife.Apis.Strava.Clients
             };
 
             var requestContent = new FormUrlEncodedContent(parameters);
-            HttpResponseMessage response = await HttpClient.PostAsync(url,requestContent);
+            HttpResponseMessage response = await HttpClient.PostAsync(url, requestContent);
             response.EnsureSuccessStatusCode();
             var data = await response.Content.ReadAsStringAsync();
             var tokenInfo = JsonConvert.DeserializeObject<TokenInfo>(data);
@@ -68,6 +68,6 @@ namespace MyActiveLife.Apis.Strava.Clients
                 new AuthenticationToken() { Name = "expires_in", Value = ExpiresIn},
                 new AuthenticationToken() { Name = "refresh_token", Value = RefreshToken},
             };
-        } 
+        }
     }
 }
