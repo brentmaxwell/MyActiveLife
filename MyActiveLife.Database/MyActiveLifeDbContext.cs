@@ -10,6 +10,8 @@ namespace MyActiveLife.Database
         public DbSet<StravaActivity> StravaActivities { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Source> Sources { get; set; }
+        public DbSet<Diary> Diaries { get; set; }
+        public DbSet<Phq9> Phq9s { get; set; }
 
         public MyActiveLifeDbContext(DbContextOptions<MyActiveLifeDbContext> options)
             : base(options)
