@@ -5,39 +5,41 @@ namespace MyActiveLife.Web.Models
 {
     public class Phq9
     {
-        [DisplayName("Little interest or pleasure in doing things")]
+        public static string Intro = Library.Phq9.Intro;
+
+        [DisplayName(Library.Phq9.Q1)]
         public int Answer1 { get; set; }
 
-        [DisplayName("Feeling down, depressed, or hopeless")];
+        [DisplayName(Library.Phq9.Q2)]
         public int Answer2 { get; set; }
 
-        [DisplayName("Trouble falling or staying asleep, or sleeping too much")];
+        [DisplayName(Library.Phq9.Q3)]
         public int Answer3 { get; set; }
 
-        [DisplayName("Feeling tired or having little energy")];
+        [DisplayName(Library.Phq9.Q4)]
         public int Answer4 { get; set; }
 
-        [DisplayName("Poor appetite or overeating")];
+        [DisplayName(Library.Phq9.Q5)]
         public int Answer5 { get; set; }
 
-        [DisplayName("Feeling bad about yourself - or that you’re a failure or have let yourself or your family down")];
+        [DisplayName(Library.Phq9.Q6)]
         public int Answer6 { get; set; }
 
-        [DisplayName("Trouble concentrating on things, such as reading the newspaper or watching television")];
+        [DisplayName(Library.Phq9.Q7)]
         public int Answer7 { get; set; }
 
-        [DisplayName("Moving or speaking so slowly that other people could have noticed. Or, the opposite - being so fidgety or so restless that you have been moving around a lot more than usual")];
+        [DisplayName(Library.Phq9.Q8)]
         public int Answer8 { get; set; }
 
-        [DisplayName("Thoughts that you would be better off dead or of hurting yourself in some way")];
+        [DisplayName(Library.Phq9.Q9)]
         public int Answer9 { get; set; }
 
         public List<KeyValuePair<int, string>> Responses = new List<KeyValuePair<int, string>>()
         {
-            new KeyValuePair<int, string>(0, "Not at all"),
-            new KeyValuePair<int, string>(1, "Several days"),
-            new KeyValuePair<int, string>(2, "More than half the days"),
-            new KeyValuePair<int, string>(3, "Nearly every day")
+            new KeyValuePair<int, string>(0, Library.Phq9.Response0),
+            new KeyValuePair<int, string>(1, Library.Phq9.Response1),
+            new KeyValuePair<int, string>(2, Library.Phq9.Response2),
+            new KeyValuePair<int, string>(3, Library.Phq9.Response3)
         };
     }
 }

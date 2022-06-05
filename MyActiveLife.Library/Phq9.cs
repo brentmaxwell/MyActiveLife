@@ -9,6 +9,7 @@ namespace MyActiveLife.Library
 {
     public class Phq9
     {
+        public const string Intro = "Over the last 2 weeks, how often have you been bothered by the following problems?";
         public const string Q1 = "Little interest or pleasure in doing things";
         public const string Q2 = "Feeling down, depressed, or hopeless";
         public const string Q3 = "Trouble falling or staying asleep, or sleeping too much";
@@ -19,18 +20,22 @@ namespace MyActiveLife.Library
         public const string Q8 = "Moving or speaking so slowly that other people could have noticed. Or, the opposite - being so fidgety or so restless that you have been moving around a lot more than usual";
         public const string Q9 = "Thoughts that you would be better off dead or of hurting yourself in some way";
 
+        public const string Response0 = "Not at all";
+        public const string Response1 = "Several days";
+        public const string Response2 = "More than half the days";
+        public const string Response3 = "Nearly every day";
         public enum Response
         {
-            [Description("Not at all")]
+            [Description(Response0)]
             NotAtAll = 0,
             
-            [Description("Several days")]
+            [Description(Response1)]
             SeveralDays = 1,
             
-            [Description("More than half the days")]
+            [Description(Response2)]
             MoreThanHalfTheDays = 2,
 
-            [Description("Nearly every day")]
+            [Description(Response3)]
             NearlyEveryDay = 3
         }   
         
@@ -65,6 +70,11 @@ namespace MyActiveLife.Library
             Answer9 = answer9;
         }
 
+        // 0-4 - None
+        // 5-9 - Mild
+        // 10-14 - Moderate
+        // 15-19 - Moderately severe
+        // 20-27 - Severe
         public int Score
         {
             get
