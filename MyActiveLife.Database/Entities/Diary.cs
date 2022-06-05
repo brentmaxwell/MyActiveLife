@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace MyActiveLife.Database.Entities
 {
+    [Table("Diary")]
     public class Diary
     {
         [Key]
