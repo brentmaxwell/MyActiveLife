@@ -185,9 +185,15 @@ namespace MyActiveLife.Apis.Strava.Entities
         [JsonProperty("max_speed")]
         public float? MaxSpeed { get; set; }
 
+        /// <summary>
+        /// Average cadence during this activity
+        /// </summary>
         [JsonProperty("average_cadence")]
         public float? AverageCadence { get; set; }
 
+        /// <summary>
+        /// Average temperature during this activity
+        /// </summary>
         [JsonProperty("average_temp")]
         public float? AverageTemp { get; set; }
 
