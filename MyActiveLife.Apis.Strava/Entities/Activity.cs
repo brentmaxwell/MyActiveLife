@@ -282,19 +282,19 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// Gets or Sets SegmentEfforts
         /// </summary>
         [JsonProperty("segment_efforts")]
-        public List<SegmentEffort> SegmentEfforts { get; set; }
+        public ICollection<SegmentEffort> SegmentEfforts { get; set; }
 
         /// <summary>
         /// The splits of this activity in metric units (for runs)
         /// </summary>
         [JsonProperty("splits_metric")]
-        public List<Split> SplitsMetric { get; set; }
+        public ICollection<Split> SplitsMetric { get; set; }
 
         /// <summary>
         /// Gets or Sets Laps
         /// </summary>
         [JsonProperty("laps")]
-        public List<Lap> Laps { get; set; }
+        public ICollection<Lap> Laps { get; set; }
 
         /// <summary>
         /// Gets or Sets Gear
@@ -309,10 +309,10 @@ namespace MyActiveLife.Apis.Strava.Entities
         /// Gets or Sets Photos
         /// </summary>
         [JsonProperty("photos")]
-        public List<Photo> Photos { get; set; }
+        public ICollection<Photo> Photos { get; set; }
 
         [JsonProperty("highlighted_kudosers")]
-        public List<Athlete> HighlightedKudosers { get; set; }
+        public ICollection<Athlete> HighlightedKudosers { get; set; }
 
         /// <summary>
         /// Whether the activity is muted
@@ -338,6 +338,6 @@ namespace MyActiveLife.Apis.Strava.Entities
         [JsonProperty("leaderboard_opt_out")]
         public bool LeaderboardOptOut { get; set; }
 
-        public List<ActivityStreamPoint> ActivityStreamPoints { get; set; }
+        public ICollection<ActivityStreamPoint> ActivityStreamPoints { get; set; }
     }
 }

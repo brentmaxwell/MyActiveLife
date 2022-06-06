@@ -58,7 +58,7 @@ namespace MyActiveLife.Apis.Strava.Entities
         public int PrRank { get; set; }
         
         [JsonProperty("achievements")]
-        public List<Achievement> Achievements { get; set; }
+        public ICollection<Achievement> Achievements { get; set; }
         
         [JsonProperty("hidden")]
         public bool Hidden { get; set; }
