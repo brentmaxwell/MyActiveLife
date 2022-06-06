@@ -34,6 +34,23 @@ namespace MyActiveLife.Web.Models
         [DisplayName(Library.Phq9.Q9)]
         public int Answer9 { get; set; }
 
+        public int Score
+        {
+            get
+            {
+                return Answer1 +
+                    Answer2 +
+                    Answer3 +
+                    Answer4 +
+                    Answer5 +
+                    Answer6 +
+                    Answer7 +
+                    Answer8 +
+                    Answer9;
+            }
+            private set { }
+        }
+
         public List<KeyValuePair<int, string>> Responses = new List<KeyValuePair<int, string>>()
         {
             new KeyValuePair<int, string>(0, Library.Phq9.Response0),
