@@ -12,6 +12,7 @@ namespace MyActiveLife.Database
         public DbSet<Source> Sources { get; set; }
         public DbSet<Diary> Diaries { get; set; }
         public DbSet<Phq9> Phq9s { get; set; }
+        public DbSet<Weather> Weather { get; set; }
 
         public MyActiveLifeDbContext(DbContextOptions<MyActiveLifeDbContext> options)
             : base(options)
