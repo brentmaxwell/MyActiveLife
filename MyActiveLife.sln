@@ -20,6 +20,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyActiveLife.Apis.Weather", "MyActiveLife.Apis.Weather\MyActiveLife.Apis.Weather.csproj", "{B8B4D392-34F7-4985-8496-D8BC4EE5B388}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyActiveLife.Apis.MyFitnessPal", "MyActiveLife.Apis.MyFitnessPal\MyActiveLife.Apis.MyFitnessPal.csproj", "{2A62C3D3-51D6-4BFB-ABF8-C92F5B26C73A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,6 +50,14 @@ Global
 		{CF53C124-69B6-43AE-8F85-F7285EF2E591}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CF53C124-69B6-43AE-8F85-F7285EF2E591}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CF53C124-69B6-43AE-8F85-F7285EF2E591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8B4D392-34F7-4985-8496-D8BC4EE5B388}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8B4D392-34F7-4985-8496-D8BC4EE5B388}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8B4D392-34F7-4985-8496-D8BC4EE5B388}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8B4D392-34F7-4985-8496-D8BC4EE5B388}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A62C3D3-51D6-4BFB-ABF8-C92F5B26C73A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A62C3D3-51D6-4BFB-ABF8-C92F5B26C73A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A62C3D3-51D6-4BFB-ABF8-C92F5B26C73A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A62C3D3-51D6-4BFB-ABF8-C92F5B26C73A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +65,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E25A6F96-D95B-40E7-AEEF-FE37C223AE2A} = {7449D43C-756D-4726-8901-FF3F76735E7F}
 		{C87FD59B-4A11-45B9-A021-0EDE8A6A4AFC} = {7449D43C-756D-4726-8901-FF3F76735E7F}
+		{B8B4D392-34F7-4985-8496-D8BC4EE5B388} = {7449D43C-756D-4726-8901-FF3F76735E7F}
+		{2A62C3D3-51D6-4BFB-ABF8-C92F5B26C73A} = {7449D43C-756D-4726-8901-FF3F76735E7F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68D06391-CFEE-44E5-86EC-278C7D477E6E}
