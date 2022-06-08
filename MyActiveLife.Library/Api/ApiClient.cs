@@ -14,10 +14,13 @@ namespace MyActiveLife.Library.Api
         protected string AuthToken;
         protected HttpClient HttpClient;
 
-        public ApiClient(string authToken)
+        public ApiClient()
+        {
+            HttpClient = new HttpClient();
+        }
+        public ApiClient(string authToken) : base()
         {
             AuthToken = authToken;
-            HttpClient = new HttpClient();
             HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
         }
 

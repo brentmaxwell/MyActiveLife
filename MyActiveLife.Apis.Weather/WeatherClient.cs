@@ -1,27 +1,55 @@
 ﻿using MyActiveLife.Apis.Weather.Entities;
+using MyActiveLife.Library;
+using MyActiveLife.Library.Api;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace MyActiveLife.Apis.Weather
 {
-    public class WeatherClient
+    public class WeatherClient : ApiClient
     {
-        public WeatherClient()
+        public async Task<Metar> GetMetar(string stationId = null, double? latitude = null, double? longitude = null,
+            int? distance = null, DateTime? startTime = null, DateTime? endTime = null)
         {
+            var queryString = "&";
 
-        }
+            if (stationId != null)
+            {
+                queryString += "stationString=" + stationId + "&";
+            }
+            else if (latitude.HasValue && longitude.HasValue && distance.HasValue)
+            {
+                queryString += "radialDistance=" + distance.Value + ";" + longitude.Value + "," + latitude.Value + "&";
+            }
+            else
+            {
+                throw new ArgumentException("StationID or Latitude, Longitude, and Distance required.");
+            }
 
-        public DailyWeather GetWeather(DateTime date)
-        {
-            return new DailyWeather();
-        }
+            if (startTime.HasValue && endTime.HasValue)
+            {
+                queryString += "startTime=" + startTime.Value.ToUnixTime() + "&endTime=" + endTime.Value.ToUnixTime() + "&";
+            }
+            else
+            {
+                queryString += "hoursBeforeNow=3&";
+            }
 
-        public ICollection<DailyWeather> GetWeather(DateTime startDate, DateTime endDate)
-        {
-            return new List<DailyWeather>();
+            //queryString = queryString.TrimEnd(new[] { '?', '&' });
+            queryString += "mostRecent=true";
+            var xmlData = await GetJsonRequest(Endpoints.Metars + queryString);
+
+            var xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(xmlData);
+            string json = JsonConvert.SerializeXmlNode(xmlDoc);
+            JToken jsonData = JToken.Parse(json);
+            return JsonConvert.DeserializeObject<Metar>(jsonData["response"]["data"]["METAR"].ToString());
         }
     }
 }
