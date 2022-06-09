@@ -33,42 +33,42 @@ namespace MyActiveLife.Apis.Weather.Entities
         //Air temperature
         // degrees celsius
         [JsonProperty("temp_c")]
-        public double? Temp { get; set; }
+        public float? Temp { get; set; }
 
         //Dewpoint temperature
         // degrees celsius
         [JsonProperty("dewpoint_c")]
-        public double? Dewpoint { get; set; }
+        public float? Dewpoint { get; set; }
 
         //Direction from which the wind is blowing. 
         // degrees from N
         [JsonProperty("wind_dir_degrees")]
-        public int? WindDirection { get; set; }
+        public float? WindDirection { get; set; }
 
         //Wind speed; 0 degree wdir and 0 wspd = calm winds
         // knots
         [JsonProperty("wind_speed_kt")]
-        public int? WindSpeed { get; set; }
+        public float? WindSpeed { get; set; }
 
         //Wind gust
         // knots
         [JsonProperty("wind_gust_kt")]
-        public int? WindGust { get; set; }
+        public float? WindGust { get; set; }
 
         //Horizontal visibility
         // statute miles
         [JsonProperty("visibility_statute_mi")]
-        public double? Visibility { get; set; }
+        public float? Visibility { get; set; }
 
         //Altimeter
         // inches of Hg
         [JsonProperty("altim_in_hg")]
-        public double? Altimiter { get; set; }
+        public float? Altimiter { get; set; }
 
         //Sea-level pressure
         // millibars
         [JsonProperty("sea_level_pressure_mb")]
-        public double? SeaLevelPressure { get; set; }
+        public float? SeaLevelPressure { get; set; }
 
         ////Quality control flags (see below) provide useful information about the METAR station(s) that provide the data.
         //[JsonProperty("quality_control_flags")]
@@ -87,52 +87,52 @@ namespace MyActiveLife.Apis.Weather.Entities
         //Pressure change in the past 3 hours
         // millibars
         [JsonProperty("three_hr_pressure_tendency_mb")]
-        public double? ThreeHourPressureTendency { get; set; }
+        public float? ThreeHourPressureTendency { get; set; }
 
         //Maximum air temperature from the past 6 hours
         // degrees celsius
         [JsonProperty("maxT_c")]
-        public double? MaxTemperature { get; set; }
+        public float? MaxTemperature { get; set; }
 
         //Minimum air temperature from the past 6 hours
         // degrees celsius
         [JsonProperty("minT_c")]
-        public double? MinTemperature { get; set; }
+        public float? MinTemperature { get; set; }
 
         //Maximum air temperature from the past 24 hours
         // degrees celsius
         [JsonProperty("maxT24hr_c")]
-        public double? MaxTemperature24Hours { get; set; }
+        public float? MaxTemperature24Hours { get; set; }
 
         //Minimum air temperature from the past 24 hours
         // degrees celsius
         [JsonProperty("minT24hr_c")]
-        public double? MinTemperature24Hours { get; set; }
+        public float? MinTemperature24Hours { get; set; }
 
         //Liquid precipitation since the last regular METAR
         // inches
         [JsonProperty("precip_in")]
-        public double? Precipitation { get; set; }
+        public float? Precipitation { get; set; }
 
         //Liquid precipitation from the past 3 hours. 0.0005 in = trace precipitation
         // inches
         [JsonProperty("pcp3hr_in")]
-        public double? Precipitation3Hours { get; set; }
+        public float? Precipitation3Hours { get; set; }
 
         //Liquid precipitation from the past 6 hours. 0.0005 in = trace precipitation
         // inches
         [JsonProperty("pcp6hr_in")]
-        public double? Precipitation6Hours { get; set; }
+        public float? Precipitation6Hours { get; set; }
 
         //Liquid precipitation from the past 24 hours. 0.0005 in = trace precipitation
         // inches
         [JsonProperty("pcp24hr_in")]
-        public double? Precipitation24Hours { get; set; }
+        public float? Precipitation24Hours { get; set; }
 
         //Snow depth on the ground
         // inches
         [JsonProperty("snow_in")]
-        public double? Snow { get; set; }
+        public float? Snow { get; set; }
 
         //Vertical Visibility
         // feet
@@ -145,6 +145,6 @@ namespace MyActiveLife.Apis.Weather.Entities
         //The elevation of the station that reported this METAR
         // meters
         [JsonProperty("elevation_m")]
-        public double? Elevation { get; set; }
+        public float? Elevation { get; set; }
     }
 }

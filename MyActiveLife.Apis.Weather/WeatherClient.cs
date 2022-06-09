@@ -12,9 +12,15 @@ using System.Xml;
 
 namespace MyActiveLife.Apis.Weather
 {
-    public class WeatherClient : ApiClient
+    public interface IWeatherService
     {
-        public async Task<Metar> GetMetar(string stationId = null, double? latitude = null, double? longitude = null,
+        public Task<Metar> GetMetarAsync(string stationId = null, double? latitude = null, double? longitude = null,
+            int? distance = null, DateTime? startTime = null, DateTime? endTime = null);
+    }
+
+    public class WeatherClient : ApiClient, IWeatherService
+    {
+        public async Task<Metar> GetMetarAsync(string stationId = null, double? latitude = null, double? longitude = null,
             int? distance = null, DateTime? startTime = null, DateTime? endTime = null)
         {
             var queryString = "&";
@@ -43,7 +49,7 @@ namespace MyActiveLife.Apis.Weather
 
             //queryString = queryString.TrimEnd(new[] { '?', '&' });
             queryString += "mostRecent=true";
-            var xmlData = await GetJsonRequest(Endpoints.Metars + queryString);
+            var xmlData = await GetJsonRequestAsync(Endpoints.Metars + queryString);
 
             var xmlDoc = new XmlDocument();
             xmlDoc.LoadXml(xmlData);
