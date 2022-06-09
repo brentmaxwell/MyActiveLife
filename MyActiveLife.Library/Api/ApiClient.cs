@@ -26,14 +26,14 @@ namespace MyActiveLife.Library.Api
 
         protected async Task<T> GetAsync<T>(string url)
         {
-            string response = await GetJsonRequest(url);
+            string response = await GetJsonRequestAsync(url);
             //var jobject = JObject.Parse(response as string);
             return JsonConvert.DeserializeObject<T>(response);
         }
 
         protected async Task<T> PostAsync<T>(string url, List<KeyValuePair<string, string>> parameters)
         {
-            string response = await PostJsonRequest(url, parameters);
+            string response = await PostJsonRequestAsync(url, parameters);
             return JsonConvert.DeserializeObject<T>(JObject.Parse(response).ToString());
         }
 
@@ -43,7 +43,7 @@ namespace MyActiveLife.Library.Api
             return JsonConvert.DeserializeObject<T>(JObject.Parse(response).ToString());
         }
 
-        public async Task<string> GetJsonRequest(string url)
+        public async Task<string> GetJsonRequestAsync(string url)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace MyActiveLife.Library.Api
             }
         }
 
-        private async Task<string> PostJsonRequest(string url, IEnumerable<KeyValuePair<string, string>> parameters)
+        private async Task<string> PostJsonRequestAsync(string url, IEnumerable<KeyValuePair<string, string>> parameters)
         {
             var requestContent = new FormUrlEncodedContent(parameters);
             HttpResponseMessage response = await HttpClient.PostAsync(url, requestContent);
