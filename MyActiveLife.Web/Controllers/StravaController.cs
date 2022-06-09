@@ -8,6 +8,7 @@ using MyActiveLife.Apis.Strava.Entities;
 using MyActiveLife.Web.Extensions;
 using MyActiveLife.Database;
 using MyActiveLife.Database.Entities;
+using MyActiveLife.Apis.Weather;
 
 namespace MyActiveLife.Web.Controllers
 {
@@ -20,6 +21,7 @@ namespace MyActiveLife.Web.Controllers
         private readonly MyActiveLifeDbContext _context;
         private readonly IMapper _mapper;
         private readonly IConfigurationSection _clientKeys;
+        private readonly IWeatherService _weatherClient;
 
         public StravaController(
             IConfiguration configuration,
@@ -27,7 +29,8 @@ namespace MyActiveLife.Web.Controllers
             SignInManager<IdentityUser> signInManager,
             IUserStore<IdentityUser> userStore,
             MyActiveLifeDbContext context,
-            IMapper mapper)
+            IMapper mapper,
+            IWeatherService weatherClient)
         {
             _configuration = configuration;
             _userManager = userManager;
@@ -36,6 +39,7 @@ namespace MyActiveLife.Web.Controllers
             _context = context;
             _mapper = mapper;
             _clientKeys = _configuration.GetSection("Authentication:Strava");
+            _weatherClient = weatherClient;
         }
         
         public async Task<IActionResult> Index(int page = 1)
