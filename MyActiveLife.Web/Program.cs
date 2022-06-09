@@ -2,56 +2,19 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MyActiveLife.Apis.Weather;
 using MyActiveLife.Database;
 using MyActiveLife.Web.Data;
+using MyActiveLife.Web.Startup;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(connectionString));;
-
-builder.Services.AddDbContext<MyActiveLifeDbContext>(options =>
-    options.UseSqlServer(connectionString));
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<ApplicationDbContext>();;
-
-// Add services to the container.
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.ConfigureDatabase();
+builder.ConfigureIdentity();
+builder.ConfigureExternalAuthentication();
+builder.ConfigureDependencyInjection();
 
 builder.Services.AddControllersWithViews();
-
-builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
-
-builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
-
-builder.Services.AddAuthentication()
-    .AddStrava(options =>
-    {
-        IConfigurationSection stravaOAuthConfigSection = builder.Configuration.GetSection("Authentication:Strava");
-        options.ClientId = stravaOAuthConfigSection["ClientId"];
-        options.ClientSecret = stravaOAuthConfigSection["ClientSecret"];
-        options.SaveTokens = true;
-        options.Events.OnCreatingTicket = ctx =>
-        {
-            List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList();
-
-            tokens.Add(new AuthenticationToken()
-            {
-                Name = "TicketCreated",
-                Value = DateTime.UtcNow.ToString()
-            });
-
-            ctx.Properties.StoreTokens(tokens);
-
-            return Task.CompletedTask;
-        };
-
-    });
-
-
 
 var app = builder.Build();
 
