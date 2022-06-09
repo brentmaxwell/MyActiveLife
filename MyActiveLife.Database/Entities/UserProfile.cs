@@ -15,7 +15,9 @@ namespace MyActiveLife.Database.Entities
         public Guid UserId { get; set; }
         public string? Name { get; set; }
         public DateTime? DateOfBirth { get; set; }
-        public virtual List<Activity> Activities { get; set; }
-        public virtual List<Photo> Photos { get; set; }
+
+        public virtual ICollection<Entry> Entries { get; set; }
+        public virtual ICollection<Activity> Activities { get; set; }
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

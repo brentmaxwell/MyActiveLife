@@ -6,6 +6,7 @@ namespace MyActiveLife.Database
     public class MyActiveLifeDbContext : DbContext
     {
         public DbSet<UserProfile> Profiles { get; set; }
+        public DbSet<Entry> Entries { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<StravaActivity> StravaActivities { get; set; }
         public DbSet<Photo> Photos { get; set; }
@@ -17,6 +18,16 @@ namespace MyActiveLife.Database
         public MyActiveLifeDbContext(DbContextOptions<MyActiveLifeDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelbuilder)
+        {
+            foreach (var relationship in modelbuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
+
+            base.OnModelCreating(modelbuilder);
         }
     }
 }
