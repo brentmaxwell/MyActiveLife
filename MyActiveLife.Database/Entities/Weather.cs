@@ -14,10 +14,13 @@ namespace MyActiveLife.Database.Entities
         public string StationId { get; set; }
         public string ZipCode { get; set; }
         public DateTime DateTime { get; set; }
-        public float HighTemp { get; set; }
-        public float LowTemp { get; set; }
-        public float Humidity { get; set; }
-        public float Precipitation { get; set; }
-        public float CloudCover { get; set; }
+        public float? Temperature { get; set; }
+        public float? MaxTemperature { get; set; }
+        public float? MinTemperature { get; set; }
+        public float? Dewpoint { get; set; }
+        public int? WindDirection { get; set; }
+        public float? WindSpeed { get; set; }
+        public float? WindGust { get; set; }
+        public float? Precipitation { get; set; }
     }
 }

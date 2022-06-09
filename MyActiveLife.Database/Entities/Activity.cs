@@ -21,6 +21,7 @@ namespace MyActiveLife.Database.Entities
 
         public string? Description { get; set; }
         public DateTime StartDateTime { get; set; }
+        public Guid WeatherId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual UserProfile UserProfile { get; set; }
@@ -30,5 +31,9 @@ namespace MyActiveLife.Database.Entities
 
         [ForeignKey("ActivityTypeId")]
         public virtual ActivityType ActivityType { get; set; }
+        
+        [ForeignKey("WeatherId")]
+        public virtual Weather Weather { get; set; }
+
     }
 }
