@@ -5,11 +5,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
-
+	<ItemGroup>
+		<PackageReference Include="JetBrains.Annotations" Version="2022.1.0" />
+		<PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
   <ItemGroup>
     <Folder Include="Entities\" />
     <Folder Include="Clients\" />
-    <Folder Include="OAuth\" />
   </ItemGroup>
 
   <ItemGroup>

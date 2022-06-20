@@ -29,6 +29,29 @@ namespace MyActiveLife.Web.Startup
                     };
                 });
 
+            builder.Services.AddAuthentication()
+                .AddWithings(options =>
+                {
+                    IConfigurationSection withingsOAuthConfigSection = builder.Configuration.GetSection("Authentication:Withings");
+                    options.ClientId = withingsOAuthConfigSection["ClientId"];
+                    options.ClientSecret = withingsOAuthConfigSection["ClientSecret"];
+                    options.SaveTokens = true;
+                    options.Events.OnCreatingTicket = ctx =>
+                    {
+                        List<AuthenticationToken> tokens = ctx.Properties.GetTokens().ToList();
+
+                        tokens.Add(new AuthenticationToken()
+                        {
+                            Name = "TicketCreated",
+                            Value = DateTime.UtcNow.ToString()
+                        });
+
+                        ctx.Properties.StoreTokens(tokens);
+
+                        return Task.CompletedTask;
+                    };
+                });
+
             return builder;
         }
     }
