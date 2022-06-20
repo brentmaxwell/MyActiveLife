@@ -13,6 +13,7 @@ namespace MyActiveLife.Database.Entities
         [Key]
         public Guid Phq9Id { get; set; }
         public Guid UserId { get; set; }
+        public Guid DayId { get; set; }
         public DateTime DateTime { get; set; }
         public int Answer1 { get; set; }
         public int Answer2 { get; set; }
@@ -42,5 +43,8 @@ namespace MyActiveLife.Database.Entities
 
         [ForeignKey("UserId")]
         public virtual UserProfile UserProfile { get; set; }
+
+        [ForeignKey("DayId")]
+        public virtual Day Day { get; set; }
     }
 }

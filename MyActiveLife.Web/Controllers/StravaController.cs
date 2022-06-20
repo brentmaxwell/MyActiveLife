@@ -70,15 +70,26 @@ namespace MyActiveLife.Web.Controllers
                 latestActivityDate = latestActivity.StartDateTime;
             }
             var activities = await client.GetAsync(null, latestActivityDate, null, null, false);
-            //var staticMapApiKey = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];
-
+            //var staticMapApiKey = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];            
             var dbActivities = _mapper.Map<ICollection<MyActiveLife.Apis.Strava.Entities.Activity>, List<StravaActivity>>(activities);
             var source = _context.Sources.SingleOrDefault(x => x.SourceName == "Strava");
-            dbActivities.ForEach(x =>
+            foreach(var activity in dbActivities)
             {
-                x.Source = source;
-                x.UserId = new Guid(user.Id);
-            });
+                var entry = _context.Entries.SingleOrDefault(x => x.Date == activity.StartDateTime.Date);
+                if(entry == null)
+                {
+                    entry = new Day()
+                    {
+                        DayId = new Guid(),
+                        UserId = new Guid(user.Id),
+                        Date = activity.StartDateTime.Date
+                    };
+                    _context.Entries.Add(entry);
+                }
+                activity.DayId = entry.DayId;
+                activity.Source = source;
+                activity.UserId = new Guid(user.Id);
+            }
             await _context.AddRangeAsync(dbActivities);
             var numberOfRecords = await _context.SaveChangesAsync();
 

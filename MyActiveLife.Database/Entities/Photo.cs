@@ -14,11 +14,15 @@ namespace MyActiveLife.Database.Entities
         [Key]
         public Guid PhotoId { get; set; }
         public Guid UserId { get; set; }
+        public Guid DayId { get; set; }
         public Guid SourceId { get; set; }
         public string ExternalId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual UserProfile UserProfile { get; set; }
+
+        [ForeignKey("DayId")]
+        public virtual Day Day { get; set; }
 
         [ForeignKey("SourceId")]
         public virtual Source Source { get; set; }
