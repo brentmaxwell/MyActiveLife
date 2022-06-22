@@ -63,36 +63,44 @@ namespace MyActiveLife.Web.Controllers
             var user = await _userManager.GetUserAsync(User);
             var token = await _userManager.GetAccessToken(user, "Strava", _clientKeys["ClientId"], _clientKeys["ClientSecret"]);
             var client = new ActivityClient(token);
-            var latestActivityDate = DateTimeExtensions.FromUnixTime(0);
-            var latestActivity = _context.StravaActivities.OrderByDescending(x => x.StartDateTime).FirstOrDefault();
-            if(latestActivity != null)
+            var numberOfRecords = 0;
+            var numberOfActivities = 1;
+            while(numberOfActivities > 0)
             {
-                latestActivityDate = latestActivity.StartDateTime;
-            }
-            var activities = await client.GetAsync(null, latestActivityDate, null, null, false);
-            //var staticMapApiKey = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];            
-            var dbActivities = _mapper.Map<ICollection<MyActiveLife.Apis.Strava.Entities.Activity>, List<StravaActivity>>(activities);
-            var source = _context.Sources.SingleOrDefault(x => x.SourceName == "Strava");
-            foreach(var activity in dbActivities)
-            {
-                var entry = _context.Entries.SingleOrDefault(x => x.Date == activity.StartDateTime.Date);
-                if(entry == null)
+                var latestActivityDate = DateTimeExtensions.FromUnixTime(0);
+                var latestActivity = _context.StravaActivities.OrderByDescending(x => x.StartDateTime).FirstOrDefault();
+                if (latestActivity != null)
                 {
-                    entry = new Day()
-                    {
-                        DayId = new Guid(),
-                        UserId = new Guid(user.Id),
-                        Date = activity.StartDateTime.Date
-                    };
-                    _context.Entries.Add(entry);
+                    latestActivityDate = latestActivity.StartDateTime;
                 }
-                activity.DayId = entry.DayId;
-                activity.Source = source;
-                activity.UserId = new Guid(user.Id);
+                var activities = await client.GetAsync(null, latestActivityDate, null, null, false);
+                //var staticMapApiKey = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];            
+                var dbActivities = _mapper.Map<ICollection<MyActiveLife.Apis.Strava.Entities.Activity>, List<StravaActivity>>(activities);
+                var source = _context.Sources.SingleOrDefault(x => x.SourceName == "Strava");
+                foreach (var activity in dbActivities)
+                {
+                    var entry = _context.Days.SingleOrDefault(x => x.Date == activity.StartDateTime.Date);
+                    if (entry == null)
+                    {
+                        entry = new Day()
+                        {
+                            DayId = new Guid(),
+                            UserId = new Guid(user.Id),
+                            Date = activity.StartDateTime.Date
+                        };
+                        _context.Days.Add(entry);
+                        await _context.SaveChangesAsync();
+                    }
+                    activity.DayId = entry.DayId;
+                    activity.Source = source;
+                    activity.UserId = new Guid(user.Id);
+                }
+                await _context.AddRangeAsync(dbActivities);
+                numberOfActivities = await _context.SaveChangesAsync();
+                numberOfRecords += numberOfActivities;
             }
-            await _context.AddRangeAsync(dbActivities);
-            var numberOfRecords = await _context.SaveChangesAsync();
-
+            
+            
             return View(numberOfRecords);
         }
 

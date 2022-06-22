@@ -58,8 +58,5 @@ namespace MyActiveLife.Web.Models
         
         [DisplayName("Calories")]
         public float? Calories { get; set; }
-
-        [DisplayName("Map")]
-        public StaticMap Map { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using MyActiveLife.Apis.Google;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace MyActiveLife.Web.Models
@@ -16,5 +17,8 @@ namespace MyActiveLife.Web.Models
         [DisplayName("Start Time")]
         [DataType(DataType.DateTime)]
         public DateTime StartTime { get; set; }
+
+        [DisplayName("Map")]
+        public StaticMap Map { get; set; }
     }
 }
