@@ -6,7 +6,7 @@ namespace MyActiveLife.Database
     public class MyActiveLifeDbContext : DbContext
     {
         public DbSet<UserProfile> Profiles { get; set; }
-        public DbSet<Day> Entries { get; set; }
+        public DbSet<Day> Days { get; set; }
         public DbSet<Activity> Activities { get; set; }
         public DbSet<StravaActivity> StravaActivities { get; set; }
         public DbSet<Photo> Photos { get; set; }
@@ -26,7 +26,7 @@ namespace MyActiveLife.Database
             {
                 relationship.DeleteBehavior = DeleteBehavior.Restrict;
             }
-
+            modelbuilder.Entity<Day>().HasIndex(x => new { x.UserId, x.Date }).IsUnique();
             base.OnModelCreating(modelbuilder);
         }
     }

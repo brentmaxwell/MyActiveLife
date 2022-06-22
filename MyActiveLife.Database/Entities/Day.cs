@@ -18,13 +18,13 @@ namespace MyActiveLife.Database.Entities
         [Column(TypeName = "Date")]
         public DateTime Date { get; set; }
 
-        public Guid WeatherId { get; set; }
+        public Guid? WeatherId { get; set; }
 
         [ForeignKey("UserId")]
         public virtual UserProfile Profile { get; set; }
 
         [ForeignKey("WeatherId")]
-        public virtual Weather Weather { get; set; }
+        public virtual Weather? Weather { get; set; }
 
         public virtual ICollection<Activity> Activities { get; set; }
         public virtual ICollection<Photo> Photos { get; set; }

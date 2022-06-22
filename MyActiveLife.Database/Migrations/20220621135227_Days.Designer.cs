@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyActiveLife.Database;
 
@@ -11,9 +12,10 @@ using MyActiveLife.Database;
 namespace MyActiveLife.Database.Migrations
 {
     [DbContext(typeof(MyActiveLifeDbContext))]
-    partial class MyActiveLifeDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220621135227_Days")]
+    partial class Days
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,7 +55,7 @@ namespace MyActiveLife.Database.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("WeatherId")
+                    b.Property<Guid>("WeatherId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("ActivityId");
@@ -68,7 +70,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasIndex("WeatherId");
 
-                    b.ToTable("Activity", (string)null);
+                    b.ToTable("Activity");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.ActivityType", b =>
@@ -85,7 +87,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasKey("ActivityTypeId");
 
-                    b.ToTable("ActivityType", (string)null);
+                    b.ToTable("ActivityType");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Day", b =>
@@ -100,17 +102,16 @@ namespace MyActiveLife.Database.Migrations
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("WeatherId")
+                    b.Property<Guid>("WeatherId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("DayId");
 
+                    b.HasIndex("UserId");
+
                     b.HasIndex("WeatherId");
 
-                    b.HasIndex("UserId", "Date")
-                        .IsUnique();
-
-                    b.ToTable("Day", (string)null);
+                    b.ToTable("Day");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Diary", b =>
@@ -138,7 +139,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Diary", (string)null);
+                    b.ToTable("Diary");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Mood", b =>
@@ -172,7 +173,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasIndex("UserProfileUserId");
 
-                    b.ToTable("Mood", (string)null);
+                    b.ToTable("Mood");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Photo", b =>
@@ -202,7 +203,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Photo", (string)null);
+                    b.ToTable("Photo");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Phq9", b =>
@@ -256,7 +257,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Phq9s", (string)null);
+                    b.ToTable("Phq9s");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Source", b =>
@@ -271,7 +272,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasKey("SourceId");
 
-                    b.ToTable("Source", (string)null);
+                    b.ToTable("Source");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.UserProfile", b =>
@@ -288,7 +289,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("UserProfile", (string)null);
+                    b.ToTable("UserProfile");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Weather", b =>
@@ -334,7 +335,7 @@ namespace MyActiveLife.Database.Migrations
 
                     b.HasKey("WeatherId");
 
-                    b.ToTable("Weather", (string)null);
+                    b.ToTable("Weather");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.StravaActivity", b =>
@@ -392,7 +393,7 @@ namespace MyActiveLife.Database.Migrations
                     b.Property<float?>("WeightedAverageWatts")
                         .HasColumnType("real");
 
-                    b.ToTable("StravaActivity", (string)null);
+                    b.ToTable("StravaActivity");
                 });
 
             modelBuilder.Entity("MyActiveLife.Database.Entities.Activity", b =>
@@ -424,7 +425,8 @@ namespace MyActiveLife.Database.Migrations
                     b.HasOne("MyActiveLife.Database.Entities.Weather", "Weather")
                         .WithMany()
                         .HasForeignKey("WeatherId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("ActivityType");
 
@@ -448,7 +450,8 @@ namespace MyActiveLife.Database.Migrations
                     b.HasOne("MyActiveLife.Database.Entities.Weather", "Weather")
                         .WithMany()
                         .HasForeignKey("WeatherId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.Navigation("Profile");
 
