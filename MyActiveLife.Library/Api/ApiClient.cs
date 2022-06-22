@@ -18,8 +18,9 @@ namespace MyActiveLife.Library.Api
         {
             HttpClient = new HttpClient();
         }
-        public ApiClient(string authToken) : base()
+        public ApiClient(string authToken)
         {
+            HttpClient = new HttpClient();
             AuthToken = authToken;
             HttpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", AuthToken);
         }
