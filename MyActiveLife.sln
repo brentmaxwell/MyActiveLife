@@ -22,7 +22,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyActiveLife.Apis.Strava", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyActiveLife.Apis.Weather", "APIs\MyActiveLife.Apis.Weather\MyActiveLife.Apis.Weather.csproj", "{B8B4D392-34F7-4985-8496-D8BC4EE5B388}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyActiveLife.Apis.Withings", "MyActiveLife.Apis.Withings\MyActiveLife.Apis.Withings.csproj", "{22DA1941-3F89-4A7A-A98A-E47A040B07D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyActiveLife.Apis.Withings", "MyActiveLife.Apis.Withings\MyActiveLife.Apis.Withings.csproj", "{22DA1941-3F89-4A7A-A98A-E47A040B07D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyActiveLife.ImportProcessor", "MyActiveLife.ImportProcessor\MyActiveLife.ImportProcessor.csproj", "{067FE2A3-E856-43DA-AE6B-342D4F0F7208}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +60,10 @@ Global
 		{22DA1941-3F89-4A7A-A98A-E47A040B07D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22DA1941-3F89-4A7A-A98A-E47A040B07D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22DA1941-3F89-4A7A-A98A-E47A040B07D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{067FE2A3-E856-43DA-AE6B-342D4F0F7208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{067FE2A3-E856-43DA-AE6B-342D4F0F7208}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{067FE2A3-E856-43DA-AE6B-342D4F0F7208}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{067FE2A3-E856-43DA-AE6B-342D4F0F7208}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
