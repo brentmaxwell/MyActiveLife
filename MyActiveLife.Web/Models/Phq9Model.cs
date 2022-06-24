@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MyActiveLife.Web.Models
 {
-    public class Phq9
+    public class Phq9Model
     {
         public static string Intro = Library.Phq9.Intro;
 

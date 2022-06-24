@@ -9,6 +9,7 @@ using MyActiveLife.Web.Extensions;
 using MyActiveLife.Database;
 using MyActiveLife.Database.Entities;
 using MyActiveLife.Apis.Weather;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyActiveLife.Web.Controllers
 {
@@ -37,12 +38,17 @@ namespace MyActiveLife.Web.Controllers
             _mapper = mapper;
         }
         
-        public async Task<IActionResult> Index(int page = 1)
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 20)
         {
             var user = await _userManager.GetUserAsync(User);
             var userId = user.Id;
             var staticMapApiKey = _configuration.GetSection("ApiKeys")["GoogleStaticMaps"];
-            var days = _context.Days.OrderByDescending(x => x.Date).Skip(page*20).Take(20).ToList();
+            var days = _context.Days
+                .OrderByDescending(x => x.Date)
+                .Skip((page-1)*pageSize)
+                .Take(pageSize)
+                .Include(x => x.Activities)
+                .ToList();
             var dayModel = _mapper.Map<List<Day>,List<DayModel>>(days);
             dayModel.ForEach(x =>
             {

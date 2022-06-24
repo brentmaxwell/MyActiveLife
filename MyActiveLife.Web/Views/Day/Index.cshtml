@@ -1,0 +1,40 @@
+﻿@model ICollection<DayModel>
+
+@foreach(var day in Model)
+{
+    <h1>@day.Date.Date.ToLongDateString()</h1>
+    @foreach(var activity in day.Activities)
+    {
+        if(activity.GetType() == typeof(StravaActivityModel))
+        {
+            StravaActivityModel strvaActivity = (StravaActivityModel)activity;
+            <div class="card mb-12">
+            <h5 class="card-header">@strvaActivity.Name</h5>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img src="@strvaActivity.Map.ToString()" class="img-fluid rounded-start">
+                    </div>
+                    <div class="col-md-9">
+                        <p class="card-text">@strvaActivity.Description</p>
+                        <div class="row">
+                            <div class="col-md-3">
+                                Time: @strvaActivity.MovingTime
+                            </div>
+                            <div class="col-md-3">
+                                Distance: @strvaActivity.Distance mi
+                            </div>
+                            <div class="col-md-3">
+                                Avg Speed: @strvaActivity.AverageSpeed mph
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-muted">
+                @strvaActivity.StartTime
+            </div>
+        </div>
+        }
+    }
+}

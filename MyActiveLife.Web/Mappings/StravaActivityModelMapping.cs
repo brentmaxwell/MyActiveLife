@@ -17,9 +17,9 @@ namespace MyActiveLife.Web.Mappings
                 .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
                 .ForMember(dest => dest.MovingTime, opt => opt.MapFrom(src => src.MovingTime))
                 .ForMember(dest => dest.ElapsedTime, opt => opt.MapFrom(src => src.ElapsedTime))
-                .ForMember(dest => dest.Distance, opt => opt.MapFrom(src => src.Distance / 1609))
+                .ForMember(dest => dest.Distance, opt => opt.MapFrom(src => src.Distance))
                 .ForMember(dest => dest.TotalElevationGain, opt => opt.MapFrom(src => src.TotalElevationGain))
-                .ForMember(dest => dest.AverageSpeed, opt => opt.MapFrom(src => src.AverageSpeed * 2.237))
+                .ForMember(dest => dest.AverageSpeed, opt => opt.MapFrom(src => src.AverageSpeed))
                 .ForMember(dest => dest.MaxSpeed, opt => opt.MapFrom(src => src.MaxSpeed))
                 .ForMember(dest => dest.AverageCadence, opt => opt.MapFrom(src => src.AverageCadence))
                 .ForMember(dest => dest.AverageTemp, opt => opt.MapFrom(src => src.AverageTemp))
@@ -31,7 +31,8 @@ namespace MyActiveLife.Web.Mappings
                 .ForMember(dest => dest.ElevationLow, opt => opt.MapFrom(src => src.ElevationLow))
                 .ForMember(dest => dest.SufferScore, opt => opt.MapFrom(src => src.SufferScore))
                 .ForMember(dest => dest.Calories, opt => opt.MapFrom(src => src.Calories))
-                .ForMember(dest => dest.Map, opt => opt.MapFrom(src => src.MapPolyline != null ? GetMap(src.MapPolyline) : null));
+                .ForMember(dest => dest.Map, opt => opt.MapFrom(src => src.MapPolyline != null ? GetMap(src.MapPolyline) : null))
+                .IncludeBase<Database.Entities.Activity, ActivityModel>();
         }
 
         public StaticMap GetMap(string polyline)

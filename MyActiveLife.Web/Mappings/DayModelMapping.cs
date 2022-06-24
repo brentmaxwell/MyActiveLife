@@ -13,6 +13,7 @@ namespace MyActiveLife.Web.Mappings
         {
             CreateMap<Day, DayModel>()
                 .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date))
+                .ForMember(dest => dest.Phq9s, opt => opt.MapFrom(src => src.Phq9s))
                 .ForMember(dest => dest.Activities, opt => opt.MapFrom(src => src.Activities));
         }
     }

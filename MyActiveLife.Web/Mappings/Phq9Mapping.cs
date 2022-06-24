@@ -6,7 +6,7 @@ namespace MyActiveLife.Web.Mappings
     {
         public Phq9Mapping()
         {
-            CreateMap<MyActiveLife.Web.Models.Phq9, MyActiveLife.Database.Entities.Phq9>()
+            CreateMap<MyActiveLife.Web.Models.Phq9Model, MyActiveLife.Database.Entities.Phq9>()
                 .ForMember(src => src.Answer1, opt => opt.MapFrom(dest => dest.Answer1))
                 .ForMember(src => src.Answer2, opt => opt.MapFrom(dest => dest.Answer2))
                 .ForMember(src => src.Answer3, opt => opt.MapFrom(dest => dest.Answer3))
