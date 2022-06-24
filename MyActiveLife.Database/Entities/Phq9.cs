@@ -13,6 +13,7 @@ namespace MyActiveLife.Database.Entities
         [Key]
         public Guid Phq9Id { get; set; }
         public Guid UserId { get; set; }
+        public string ExternalId { get; set; }
         public Guid DayId { get; set; }
         public DateTime DateTime { get; set; }
         public int Answer1 { get; set; }
